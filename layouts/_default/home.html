@@ -1,0 +1,13 @@
+{{ define "title" }}{{ .Site.Title }}{{ end }}
+{{ define "main" }}
+<main>
+  <h1>{{ .Title }}</h1>
+  <article>{{ .Content }}</article>
+  <h2>Latest Posts</h2>
+  <ul>
+    {{ range first 5 (where .Site.RegularPages "Type" "posts") }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+    {{ end }}
+  </ul>
+</main>
+{{ end }}

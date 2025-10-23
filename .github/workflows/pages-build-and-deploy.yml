@@ -1,0 +1,44 @@
+name: Build and Deploy Hugo site
+
+on:
+  push:
+    branches:
+      - main
+      - gh-pages
+  workflow_dispatch:
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.150.1"
+          extended: true
+
+      - name: Build Hugo site
+        run: hugo --minify
+
+      - name: Upload artifact to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages
+          keep_files: true
+          commit_message: "auto: Hugo build & deploy from GitHub Actions"
+
+      - name: Trigger Cloudflare Pages rebuild
+        run: |
+          curl -X POST "https://api.cloudflare.com/client/v4/accounts/2a1890a01bce4976fa8208ddcd74f6c8/pages/projects/reporthub/deployments" \
+          -H "Authorization: Bearer GNxFBK_aWRqLqYiwJslddfoczgnfRYftJ4CT2KMZ" \
+          -H "Content-Type: application/json" \
+          --data '{"environment":"production"}'

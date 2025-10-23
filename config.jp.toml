@@ -1,0 +1,4 @@
+baseURL = "https://jp.newspreadnow.com/"
+languageCode = "ja-jp"
+title = "NewspreadNow - JP"
+theme = "ananke"

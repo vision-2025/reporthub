@@ -1,0 +1,66 @@
+baseURL = "http://localhost:1313/"
+languageCode = "en-us"
+title = "ReportHub"
+theme = "ananke"
+[mediaTypes]
+  [mediaTypes."application/json"]
+    suffixes = ["json"]
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  page = ["HTML"]
+
+[markup]
+  defaultMarkdownHandler = "goldmark"
+<<<<<<< HEAD
+=======
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = true
+
+[languages]
+  [languages.us]
+    languageName = "English (US)"
+  [languages.uk]
+    languageName = "English (UK)"
+  [languages.ca]
+    languageName = "English (CA)"
+  [languages.au]
+    languageName = "English (AU)"
+  [languages.nz]
+    languageName = "English (NZ)"
+  [languages.de]
+    languageName = "German"
+  [languages.fr]
+    languageName = "French"
+  [languages.it]
+    languageName = "Italian"
+  [languages.es]
+    languageName = "Spanish"
+  [languages.fi]
+    languageName = "Finnish"
+  [languages.dk]
+    languageName = "Danish"
+  [languages.se]
+    languageName = "Swedish"
+  [languages.no]
+    languageName = "Norwegian"
+  [languages.ch]
+    languageName = "Swiss"
+  [languages.nl]
+    languageName = "Dutch"
+  [languages.be]
+    languageName = "Belgian"
+  [languages.br]
+    languageName = "Brazilian"
+  [languages.za]
+    languageName = "South African"
+  [languages.sg]
+    languageName = "Singaporean"
+  [languages.jp]
+    languageName = "Japanese"
+  [languages.ae]
+    languageName = "UAE"
+  [languages.qa]
+    languageName = "Qatar"
+>>>>>>> 135b02f (chore(security): rebuild clean branch without secrets)
+

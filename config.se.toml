@@ -1,0 +1,4 @@
+baseURL = "https://se.newspreadnow.com/"
+languageCode = "sv-se"
+title = "NewspreadNow - SE"
+theme = "ananke"

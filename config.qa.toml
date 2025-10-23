@@ -1,0 +1,4 @@
+baseURL = "https://qa.newspreadnow.com/"
+languageCode = "ar-qa"
+title = "NewspreadNow - QA"
+theme = "ananke"

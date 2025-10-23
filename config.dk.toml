@@ -1,0 +1,4 @@
+baseURL = "https://dk.newspreadnow.com/"
+languageCode = "da-dk"
+title = "NewspreadNow - DK"
+theme = "ananke"

@@ -1,0 +1,4 @@
+baseURL = "https://ae.newspreadnow.com/"
+languageCode = "ar-ae"
+title = "NewspreadNow - AE"
+theme = "ananke"

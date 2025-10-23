@@ -1,0 +1,4 @@
+baseURL = "https://nz.newspreadnow.com/"
+languageCode = "en-nz"
+title = "NewspreadNow - NZ"
+theme = "ananke"

@@ -1,3 +1,4 @@
-
-scripts/token.json
 secrets/
+scripts/service_account.json
+*.json
+!static/ai_generated/*.json

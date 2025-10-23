@@ -64,3 +64,4 @@ defaultContentLanguageInSubdir = true
     languageName = "Qatar"
 >>>>>>> 135b02f (chore(security): rebuild clean branch without secrets)
 
+staticDir = ["static"]

@@ -51,12 +51,10 @@ jobs:
       - name: Build Hugo
         run: hugo --gc --minify --cleanDestinationDir
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: ./public
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages
 
-      - name: Deploy to GitHub Pages
-        continue-on-error: true
-        timeout-minutes: 10
-        uses: actions/deploy-pages@v4

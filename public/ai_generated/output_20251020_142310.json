@@ -1,4 +1,0 @@
-{
-  "prompt": "Write a short JSON summary about the Narak AI publishing loop.",
-  "response": "Write a short JSON summary about the Narak AI publishing loop.\n\n```json\n{\n  \"name\": \"Narak AI\",\n  \"description\": \"Narak AI is a decentralized AI publishing platform that allows anyone to publish and monetize their AI models.\",\n  \"url\": \"https://narak.ai\",\n  \"version\": \"0.1.0\",\n  \"license\": \"MIT\",\n  \"author\": {\n    \"name\": \"Narak AI\",\n    \"url\": \"https://narak.ai\"\n  },\n  \"homepage\": \"https://narak.ai\",\n  \"repository\": {\n    \"type\": \"git\",\n   "
-}

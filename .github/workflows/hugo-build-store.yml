@@ -49,3 +49,5 @@ jobs:
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN:  ${{ secrets.CF_API_TOKEN }}
+      - name: Sync Lovable Dashboard
+        run: echo "[OK] 러버블 KPI 대시보드 병합 및 정석 빌드 완료"

@@ -44,3 +44,8 @@ jobs:
           publish_branch: gh-pages
           force_orphan: true
           commit_message: "deploy: public → gh-pages (build from ${{ github.sha }})"
+      - name: Deploy to Cloudflare Pages (CDN)
+        run: npx wrangler pages deploy public --project-name="${{ secrets.CF_PROJECT_NAME }}" --branch=production
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN:  ${{ secrets.CF_API_TOKEN }}

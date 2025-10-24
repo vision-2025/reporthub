@@ -58,3 +58,8 @@ jobs:
 
       - name: Sync Lovable Dashboard
         run: echo "[OK] 러버블 KPI 대시보드 병합 및 정석 빌드 완료"
+     
+      - name: Auto-submit Discover (24 Nations)
+        run: python scripts/gsc_auto_submit.py
+        env:
+          GSC_API_KEY: ${{ secrets.GSC_API_KEY }}

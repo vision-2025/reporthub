@@ -72,3 +72,16 @@ jobs:
               repo: context.repo.repo,
               body: "✅ [OK] Lovable 코드 머지 및 자비스 자동 배포 완료 (정석 루프 유지)"
             })
+      - name: Comment from Jarvis
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.payload.pull_request.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "⚡ PR 수신 완료 — 자비스가 자동 검증 및 배포 절차를 시작합니다. (Lovable ↔ Jarvis 루프 활성)"
+            })
+

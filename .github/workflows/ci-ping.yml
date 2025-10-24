@@ -1,0 +1,12 @@
+name: CI Ping
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "[OK] CI trigger is alive"

@@ -1,9 +1,9 @@
-@'
 name: Hugo Build and Deploy (정석 완전판)
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -11,9 +11,6 @@ permissions:
   pages: write
   id-token: write
 
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
@@ -30,56 +27,21 @@ jobs:
           hugo-version: "0.150.1"
           extended: true
 
-      - name: Build site
-        run: hugo --minify
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
 
-      - name: Copy KPI JSON to public
-        run: |
-          mkdir -p public/kpi
-          cp -r static/kpi/* public/kpi/
-          echo "[OK] KPI JSON copied to public"
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Build Hugo site
+        run: hugo --gc --minify --cleanDestinationDir
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: ./public
-'@ | Out-File -Encoding utf8 .github\workflows\build-deploy.yml
-
-git add .github\workflows\build-deploy.yml
-git commit -m "ci: rebuild hugo pipeline (fetch-depth 0 + KPI copy)"
-git push origin main
-echo "[OK] GitHub Actions 재정비 및 build-deploy 트리거 완료"
-jobs:
-  build-deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          submodules: true
-          fetch-depth: 0
-
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: "0.150.1"
-          extended: true
-
-      - name: Build site
-        run: hugo --minify
-
-      - name: Copy KPI JSON to public
-        run: |
-          mkdir -p public/kpi
-          cp -r static/kpi/* public/kpi/
-          echo "[OK] KPI JSON copied to public"
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: ./public
+        uses: actions/deploy-pages@v4

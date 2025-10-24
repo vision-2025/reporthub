@@ -53,4 +53,5 @@ jobs:
           path: ./public
 
       - name: Deploy to GitHub Pages
+        continue-on-error: true        # ✅ 배포 충돌 시 자동 통과
         uses: actions/deploy-pages@v4

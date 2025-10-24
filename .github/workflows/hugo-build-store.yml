@@ -57,7 +57,9 @@ jobs:
           CLOUDFLARE_API_TOKEN:  ${{ secrets.CF_API_TOKEN }}
 
       - name: Sync Lovable Dashboard
-        run: echo "[OK] 러버블 KPI 대시보드 병합 및 정석 빌드 완료"
+        run: |
+          echo "[INFO] 러버블 연동 스킵 (Pro 미사용 상태)"
+          exit 0
      
       - name: Auto-submit Discover (24 Nations)
         run: python scripts/gsc_auto_submit.py

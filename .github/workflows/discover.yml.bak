@@ -1,0 +1,45 @@
+name: Discover & SEO Auto Submit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 */6 * * *'   # 6시간마다 자동 실행
+  push:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  discover-seo:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          pip install requests beautifulsoup4 lxml
+
+      - name: IndexNow Submit
+        run: |
+          echo "[INFO] Running IndexNow Submit..."
+          python ./scripts/submit_indexnow.py || echo "[WARN] IndexNow 단계 경고 발생"
+
+      - name: GSC & Bing Submit
+        run: |
+          echo "[INFO] Running GSC & Bing Submit..."
+          python ./scripts/submit_search.py || echo "[WARN] GSC·Bing 단계 경고 발생"
+
+      - name: Discover Report
+        run: |
+          echo "[OK] Discover & SEO 피드백 루프 완료"

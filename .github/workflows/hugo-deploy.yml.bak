@@ -1,0 +1,77 @@
+name: Hugo Build and Deploy (정석 완전판)
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write       # ✅ gh-pages 브랜치 푸시 허용
+  pages: write
+  id-token: write
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GH_TOKEN: ${{ secrets.GH_TOKEN }} 
+  HF_TOKEN: ${{ secrets.HF_TOKEN }}
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.150.1"
+          extended: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Verify HuggingFace token
+        run: |
+          if [ -z "${HF_TOKEN}" ]; then
+            echo "[ERROR] HF_TOKEN not found in secrets"
+            exit 1
+          fi
+          echo "[OK] HuggingFace token injected from Secrets"
+
+      - name: Build Hugo site
+        run: hugo --gc --minify --cleanDestinationDir
+
+      - name: Verify build output
+        run: |
+          if [ ! -d "./public" ]; then
+            echo "[ERROR] Hugo build output missing"
+            exit 1
+          fi
+          echo "[OK] Hugo build output verified"
+
+      - name: Copy AI JSON outputs
+        run: |
+          mkdir -p public/ai_generated
+          cp -r ai_generated/*.json public/ai_generated/ || true
+          echo "[OK] AI JSON outputs copied"
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./public
+          keep_files: true
+          full_commit_message: true
+          commit_message: "auto: Hugo build → gh-pages deploy"

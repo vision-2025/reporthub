@@ -1,0 +1,14 @@
+name: GSC API Auth Test
+on:
+  workflow_dispatch:
+
+jobs:
+  gsc-auth:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test GSC API Authentication
+        run: |
+          echo "$GSC_SECRET" > key.json
+          python3 -c "import json; from googleapiclient.discovery import build; from google.oauth2 import service_account; creds=service_account.Credentials.from_service_account_file('key.json', scopes=['https://www.googleapis.com/auth/webmasters']); service=build('searchconsole','v1',credentials=creds); sites=service.sites().list().execute(); print('[OK] 연결 성공, 사이트 목록:', [s['siteUrl'] for s in sites.get('siteEntry', [])])"
+        env:
+          GSC_SECRET: ${{ secrets.GSC_SECRET }}

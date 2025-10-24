@@ -2,8 +2,7 @@ name: Hugo Build and Deploy (정석 완전판)
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:
@@ -17,8 +16,6 @@ concurrency:
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  GH_TOKEN: ${{ secrets.GH_TOKEN }}
-  HF_TOKEN: ${{ secrets.HF_TOKEN }}
 
 jobs:
   build-deploy:
@@ -27,7 +24,7 @@ jobs:
       name: github-pages
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           submodules: true
@@ -39,16 +36,13 @@ jobs:
           hugo-version: "0.150.1"
           extended: true
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "22"
 
-      - name: Install dependencies
+      - name: Install deps
         run: npm ci || npm install
-
-      - name: Verify PostCSS
-        run: npx postcss --version
 
       - name: Build Hugo
         run: hugo --gc --minify --cleanDestinationDir

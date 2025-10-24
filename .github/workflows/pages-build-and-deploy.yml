@@ -51,3 +51,35 @@ git add .github\workflows\build-deploy.yml
 git commit -m "ci: rebuild hugo pipeline (fetch-depth 0 + KPI copy)"
 git push origin main
 echo "[OK] GitHub Actions 재정비 및 build-deploy 트리거 완료"
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.150.1"
+          extended: true
+
+      - name: Build site
+        run: hugo --minify
+
+      - name: Copy KPI JSON to public
+        run: |
+          mkdir -p public/kpi
+          cp -r static/kpi/* public/kpi/
+          echo "[OK] KPI JSON copied to public"
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./public

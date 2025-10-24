@@ -1,0 +1,35 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Enson KPI Dashboard</title>
+<style>
+body{font-family:system-ui;margin:40px auto;max-width:1000px;padding:20px;}
+h1{margin-bottom:12px;}
+.card{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;}
+.metric{background:#f7f7f7;border-radius:12px;padding:16px;text-align:center;box-shadow:0 1px 4px #ddd;}
+.value{font-size:1.6rem;font-weight:600;}
+</style>
+</head>
+<body>
+<h1>📊 Enson KPI Dashboard</h1>
+<div id="cards" class="card"></div>
+<script>
+async function render(){
+  try {
+    const res = await fetch("./kpi.json",{cache:"no-store"});
+    const data = await res.json();
+    const m = data.metrics;
+    const el = document.getElementById("cards");
+    for(const [k,v] of Object.entries(m)){
+      const div=document.createElement("div");
+      div.className="metric";
+      div.innerHTML=`<div>${k}</div><div class='value'>${v}</div>`;
+      el.appendChild(div);
+    }
+  } catch(e){
+    document.getElementById("cards").textContent="[ERROR] KPI data load failed";
+  }
+}
+render();
+</script>
+</body></html>

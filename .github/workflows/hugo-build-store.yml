@@ -1,4 +1,4 @@
-name: Hugo Build and Deploy (정석 안정판)
+name: Hugo Build → Store to gh-pages (정석)
 
 on:
   push:
@@ -7,27 +7,12 @@ on:
 
 permissions:
   contents: write
-  pages: write
   id-token: write
 
-# ✅ 병렬 배포 자동 취소
-concurrency:
-  group: github-pages
-  cancel-in-progress: true
-
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 jobs:
-  build-deploy:
+  build-and-store:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-
     steps:
-      - name: Safety delay before build
-        run: sleep 10
-
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -48,13 +33,14 @@ jobs:
       - name: Install deps
         run: npm ci || npm install
 
-      - name: Build Hugo
+      - name: Build (main → public)
         run: hugo --gc --minify --cleanDestinationDir
 
-      - name: Deploy to gh-pages branch
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Store artifact to gh-pages (deploy-only branch)
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           publish_branch: gh-pages
-
+          force_orphan: true
+          commit_message: "deploy: public → gh-pages (build from ${{ github.sha }})"

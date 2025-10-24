@@ -1,0 +1,74 @@
+name: Lovable-Jarvis Auto Orchestrator
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write
+  pull-requests: write
+  pages: write
+  id-token: write
+
+jobs:
+  review-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: true
+
+      - name: Comment from Jarvis
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.payload.pull_request ? context.payload.pull_request.number : 0,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "⚡ PR 수신 완료 — 자비스가 자동 검증 및 배포 절차를 시작합니다. (Lovable ↔ Jarvis 루프 활성)"
+            })
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.150.1"
+          extended: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Build Hugo
+        run: hugo --gc --minify --cleanDestinationDir
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+
+      - name: Final comment
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.payload.pull_request ? context.payload.pull_request.number : 0,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "✅ [OK] Lovable 코드 머지 및 자비스 자동 배포 완료 (정석 루프 유지)"
+            })

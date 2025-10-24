@@ -5,6 +5,10 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
   id-token: write
@@ -12,6 +16,7 @@ permissions:
 jobs:
   build-and-store:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -44,10 +49,12 @@ jobs:
           publish_branch: gh-pages
           force_orphan: true
           commit_message: "deploy: public → gh-pages (build from ${{ github.sha }})"
+
       - name: Deploy to Cloudflare Pages (CDN)
         run: npx wrangler pages deploy public --project-name="${{ secrets.CF_PROJECT_NAME }}" --branch=production
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN:  ${{ secrets.CF_API_TOKEN }}
+
       - name: Sync Lovable Dashboard
         run: echo "[OK] 러버블 KPI 대시보드 병합 및 정석 빌드 완료"

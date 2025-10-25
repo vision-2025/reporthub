@@ -1,5 +1,6 @@
 ---
-title: "de Home"
-description: "Auto-generated homepage for de"
+title: "DE Report Hub"
+country: "de"
+type: "section"
+draft: false
 ---
-Welcome to de site of NewspreadNow.

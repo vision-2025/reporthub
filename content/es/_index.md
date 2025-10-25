@@ -1,5 +1,6 @@
 ---
-title: "es Home"
-description: "Auto-generated homepage for es"
+title: "ES Report Hub"
+country: "es"
+type: "section"
+draft: false
 ---
-Welcome to es site of NewspreadNow.

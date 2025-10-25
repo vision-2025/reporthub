@@ -1,5 +1,6 @@
 ---
-title: "nz Home"
-description: "Auto-generated homepage for nz"
+title: "NZ Report Hub"
+country: "nz"
+type: "section"
+draft: false
 ---
-Welcome to nz site of NewspreadNow.

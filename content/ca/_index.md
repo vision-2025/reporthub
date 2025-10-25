@@ -1,5 +1,6 @@
 ---
-title: "ca Home"
-description: "Auto-generated homepage for ca"
+title: "CA Report Hub"
+country: "ca"
+type: "section"
+draft: false
 ---
-Welcome to ca site of NewspreadNow.

@@ -1,5 +1,6 @@
 ---
-title: "qa Home"
-description: "Auto-generated homepage for qa"
+title: "QA Report Hub"
+country: "qa"
+type: "section"
+draft: false
 ---
-Welcome to qa site of NewspreadNow.

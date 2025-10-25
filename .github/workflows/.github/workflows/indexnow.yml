@@ -1,0 +1,21 @@
+name: IndexNow Auto Submit
+on:
+  schedule:
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Submit Sitemap
+        run: python scripts/indexnow_submit.py
+      - name: Log Result
+        run: echo "$(date)" >> logs/indexnow_history.txt
+      - name: Commit Result
+        run: |
+          git config user.name "vision2025-bot"
+          git config user.email "bot@vision2025.com"
+          git add logs/indexnow_history.txt
+          git commit -m "auto: IndexNow ping log"
+          git push

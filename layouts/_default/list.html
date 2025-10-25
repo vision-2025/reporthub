@@ -1,6 +1,12 @@
 {{ define "main" }}
-<h1>{{ .Title }}</h1>
-{{ range .Pages }}
-  <a href="{{ .RelPermalink }}">{{ .Title }}</a><br>
-{{ end }}
+  <section>
+    <h1>{{ .Title }}</h1>
+    <ul>
+      {{ range .Pages }}
+        {{ if ne .File.Path "_index/first.md" }}
+          <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+        {{ end }}
+      {{ end }}
+    </ul>
+  </section>
 {{ end }}

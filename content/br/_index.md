@@ -1,5 +1,6 @@
 ---
-title: "br Home"
-description: "Auto-generated homepage for br"
+title: "BR Report Hub"
+country: "br"
+type: "section"
+draft: false
 ---
-Welcome to br site of NewspreadNow.

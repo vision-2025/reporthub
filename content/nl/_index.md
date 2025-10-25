@@ -1,5 +1,6 @@
 ---
-title: "nl Home"
-description: "Auto-generated homepage for nl"
+title: "NL Report Hub"
+country: "nl"
+type: "section"
+draft: false
 ---
-Welcome to nl site of NewspreadNow.

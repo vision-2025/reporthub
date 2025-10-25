@@ -1,5 +1,6 @@
 ---
-title: "jp Home"
-description: "Auto-generated homepage for jp"
+title: "JP Report Hub"
+country: "jp"
+type: "section"
+draft: false
 ---
-Welcome to jp site of NewspreadNow.

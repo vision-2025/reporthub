@@ -1,2 +1,5 @@
-{{ define "title" }}{{ .Title }}{{ end }}
-{{ define "main" }}<article><h1>{{ .Title }}</h1>{{ .Content }}</article>{{ end }}
+{{ partial "meta.html" . }}
+<section class="hero"><h1>{{ .Title }}</h1><p>{{ .Params.description }}</p></section>
+<main class="body">{{ .Content }}</main>
+{{ partial "adsense.html" . }}
+<footer>© {{ now.Year }} Enson ReportHub</footer>

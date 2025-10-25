@@ -1,0 +1,21 @@
+name: Discover CTR Feedback
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch CTR Data
+        run: python scripts/ctr_fetch.py
+      - name: Update CTR Log
+        run: echo "$(date)" >> logs/ctr_history.txt
+      - name: Commit & Push
+        run: |
+          git config user.name "vision2025-bot"
+          git config user.email "bot@vision2025.com"
+          git add logs/ctr_history.txt
+          git commit -m "auto: update CTR log"
+          git push

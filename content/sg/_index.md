@@ -1,5 +1,6 @@
 ---
-title: "sg Home"
-description: "Auto-generated homepage for sg"
+title: "SG Report Hub"
+country: "sg"
+type: "section"
+draft: false
 ---
-Welcome to sg site of NewspreadNow.

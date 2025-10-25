@@ -1,5 +1,6 @@
 ---
-title: "au Home"
-description: "Auto-generated homepage for au"
+title: "AU Report Hub"
+country: "au"
+type: "section"
+draft: false
 ---
-Welcome to au site of NewspreadNow.

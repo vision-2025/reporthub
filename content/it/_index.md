@@ -1,5 +1,6 @@
 ---
-title: "it Home"
-description: "Auto-generated homepage for it"
+title: "IT Report Hub"
+country: "it"
+type: "section"
+draft: false
 ---
-Welcome to it site of NewspreadNow.

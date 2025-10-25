@@ -1,5 +1,6 @@
 ---
-title: "ch Home"
-description: "Auto-generated homepage for ch"
+title: "CH Report Hub"
+country: "ch"
+type: "section"
+draft: false
 ---
-Welcome to ch site of NewspreadNow.

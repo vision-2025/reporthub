@@ -1,5 +1,6 @@
 ---
-title: "fr Home"
-description: "Auto-generated homepage for fr"
+title: "FR Report Hub"
+country: "fr"
+type: "section"
+draft: false
 ---
-Welcome to fr site of NewspreadNow.

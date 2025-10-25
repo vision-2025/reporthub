@@ -1,0 +1,8 @@
+{{- $label := .Get "label" -}}
+{{- $url := .Get "url" -}}
+<div class="cta" style="margin:2em 0;text-align:center;">
+  <a href="{{ $url }}" class="cta-button"
+     style="background:#2563eb;color:#fff;padding:0.75em 1.5em;border-radius:8px;text-decoration:none;font-weight:600;">
+     {{ $label }}
+  </a>
+</div>

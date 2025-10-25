@@ -1,0 +1,20 @@
+name: SEO Audit and KPI Collect
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: "0 9 * * *"
+jobs:
+  seo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lighthouse SEO Audit
+        run: npx @lhci/cli autorun
+      - name: KPI Collect
+        run: python scripts/kpi_collect.py
+      - name: Commit KPI Logs
+        run: |
+          git add logs/kpi_report.json
+          git commit -m "auto: KPI daily report"
+          git push

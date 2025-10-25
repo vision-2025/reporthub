@@ -1,5 +1,6 @@
 ---
-title: "fi Home"
-description: "Auto-generated homepage for fi"
+title: "FI Report Hub"
+country: "fi"
+type: "section"
+draft: false
 ---
-Welcome to fi site of NewspreadNow.

@@ -1,5 +1,6 @@
 ---
-title: "se Home"
-description: "Auto-generated homepage for se"
+title: "SE Report Hub"
+country: "se"
+type: "section"
+draft: false
 ---
-Welcome to se site of NewspreadNow.

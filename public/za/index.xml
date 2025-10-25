@@ -1,1 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>za Home on My New Hugo Site</title><link>https://example.org/za/</link><description>Recent content in za Home on My New Hugo Site</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://example.org/za/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ZA Report Hub on ReportHub</title>
+    <link>http://localhost:1313/za/</link>
+    <description>Recent content in ZA Report Hub on ReportHub</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/za/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

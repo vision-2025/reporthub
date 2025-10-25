@@ -1,0 +1,13 @@
+baseURL = "http://localhost:1313/"
+languageCode = "en-us"
+title = "ReportHub"
+theme = "ananke"
+
+[params]
+  author = "IDOLAB"
+  description = "Enson 2.0 Global Reports Hub"
+
+[markup]
+  defaultMarkdownHandler = "goldmark"
+  [markup.goldmark.renderer]
+    unsafe = true

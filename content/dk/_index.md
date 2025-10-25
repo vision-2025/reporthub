@@ -1,5 +1,6 @@
 ---
-title: "dk Home"
-description: "Auto-generated homepage for dk"
+title: "DK Report Hub"
+country: "dk"
+type: "section"
+draft: false
 ---
-Welcome to dk site of NewspreadNow.

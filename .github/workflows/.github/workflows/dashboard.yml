@@ -1,0 +1,22 @@
+name: Discover Metrics and Dashboard
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Collect Discover Metrics
+        run: python scripts/discover_collect.py
+      - name: Generate Dashboard
+        run: python scripts/dashboard_generate.py
+      - name: Commit Dashboard
+        run: |
+          git config user.name "vision2025-bot"
+          git config user.email "bot@vision2025.com"
+          git add logs/discover_metrics.json public/dashboard.html
+          git commit -m "auto: update dashboard"
+          git push

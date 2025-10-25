@@ -1,0 +1,8 @@
+baseURL = "http://localhost:1313/"
+languageCode = "en-us"
+title = "ReportHub"
+theme = "ananke"
+contentDir = "D:/limhansin/vision2025/reporthub/content"
+layoutDir = "D:/limhansin/vision2025/reporthub/layouts"
+staticDir = ["D:/limhansin/vision2025/reporthub/static"]
+publishDir = "D:/limhansin/vision2025/reporthub/public"

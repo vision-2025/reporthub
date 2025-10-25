@@ -1,5 +1,6 @@
 ---
-title: "za Home"
-description: "Auto-generated homepage for za"
+title: "ZA Report Hub"
+country: "za"
+type: "section"
+draft: false
 ---
-Welcome to za site of NewspreadNow.

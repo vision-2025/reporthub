@@ -1,5 +1,6 @@
 ---
-title: "uk Home"
-description: "Auto-generated homepage for uk"
+title: "UK Report Hub"
+country: "uk"
+type: "section"
+draft: false
 ---
-Welcome to uk site of NewspreadNow.

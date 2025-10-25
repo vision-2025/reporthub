@@ -1,5 +1,6 @@
 ---
-title: "be Home"
-description: "Auto-generated homepage for be"
+title: "BE Report Hub"
+country: "be"
+type: "section"
+draft: false
 ---
-Welcome to be site of NewspreadNow.
